@@ -44,7 +44,7 @@
                   </tr>
                   <tr>
                      <th><img src="../images/login_tit02.gif" alt="패스워드" /></th>
-                     <td><input type="text" name="" value="" class="login_input" /></td>
+                     <td><input type="password" name="" value="" class="login_input" /></td>
                   </tr>
                </table>
                <p>

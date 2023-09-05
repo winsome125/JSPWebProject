@@ -1,16 +1,24 @@
-<%@page import="JSPWebProject.MemberDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../include/global_head.jsp" %>
 
-<%
-String id = request.getParameter("id");
+<script>
+  function calidateForm(form) {
+	  if (!form.user_id.value) {
+		  alert("아이디를 입력하세요.");
+		  form.user_id.focus();
+		  return false;
+	  }
+	  if (form.user_pw.value == "") {
+		  alert("패스워드를 입력하세요.");
+		  form.user_pw.focus();
+		  reutrn false;
+	  }
+	
+ }
+</script>
 
-MemberDAO dao = new MemberDAO(application);
-boolean isExist = dao.idOverlap(id);
-dao.close();
-%>
-
+ 
  <body>
 	<center>
 	<div id="wrap">
