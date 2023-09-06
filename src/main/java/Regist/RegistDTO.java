@@ -1,19 +1,18 @@
-package JSPWebProject;
+package Regist;
 
-public class MemberDTO {
-
-	// 멤버변수
-	private String id;       // 아이디
-	private String pass;     // 비밀번호
-	private String name;     // 이름
-	private String telephon; // 전화번호
-	private String mobile;   // 핸드폰번호
-	private String email;    // 이메일
-	private String mailing;  // 이메일 수신 여부
-	private String zipcode;  // 우편번호
-	private String addr1;    // 주소
-	private String addr2;    // 상세주소
+public class RegistDTO {
 	
+	// 멤버변수
+	private String id;
+	private String pass;
+	private String name;
+	private String telephon;
+	private String mobile;
+	private String email;
+	private String open_email; // 이메일 수신 여부
+	private String zipcode;
+	private String addr1;
+	private String addr2;
 	
 	// getter/setter 정의
 	public String getId() {
@@ -52,11 +51,11 @@ public class MemberDTO {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getMailing() {
-		return mailing;
+	public String getOpen_email() {
+		return open_email;
 	}
-	public void setMailing(String mailing) {
-		this.mailing = mailing;
+	public void setOpen_email(String open_email) {
+		this.open_email = open_email;
 	}
 	public String getZipcode() {
 		return zipcode;
@@ -76,8 +75,9 @@ public class MemberDTO {
 	public void setAddr2(String addr2) {
 		this.addr2 = addr2;
 	}
+
 	
 	
-	
+
 	
 }
