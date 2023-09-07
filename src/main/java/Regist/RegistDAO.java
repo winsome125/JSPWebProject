@@ -14,7 +14,7 @@ public class RegistDAO extends JDBConnect {
 	// 회원정보 입력을 위한 메서드 정의
 	public int registInsert(RegistDTO dto) {
 		int result = 0;
-		String query = "INSERT INTO regist_member VALUES ("
+		String query = "INSERT INTO sua_member VALUES ("
 				+ "    ?,?,?,?,?,?,"
 				+ "    ?,?,?,?)";
 		try {
@@ -23,12 +23,12 @@ public class RegistDAO extends JDBConnect {
 			psmt.setString(2, dto.getPass());
 			psmt.setString(3, dto.getName());
 			psmt.setString(4, dto.getTelephon());
-			psmt.setString(9, dto.getMobile());
-			psmt.setString(4, dto.getEmail());
-			psmt.setString(5, dto.getOpen_email());
-			psmt.setString(6, dto.getZipcode());
-			psmt.setString(7, dto.getAddr1());
-			psmt.setString(8, dto.getAddr2());
+			psmt.setString(5, dto.getMobile());
+			psmt.setString(6, dto.getEmail());
+			psmt.setString(7, dto.getOpen_email());
+			psmt.setString(8, dto.getZipcode());
+			psmt.setString(9, dto.getAddr1());
+			psmt.setString(10, dto.getAddr2());
 			result = psmt.executeUpdate();
 		} 
 		catch (Exception e) {
@@ -43,7 +43,7 @@ public class RegistDAO extends JDBConnect {
 		// 초기값은 true로 설정. 중복된 아이디가 없는 경우.
 		boolean retValue = true;
 		// 중복된 아이디가 있는지 확인하기 위한 쿼리문.
-		String sql = "SELECT COUNT(*) FROM regist_member WHERE id=?";
+		String sql = "SELECT COUNT(*) FROM sua_member WHERE id=?";
 		try {
 			// prepared객체 생성 및 인파라미터 설정
 			psmt = con.prepareStatement(sql);

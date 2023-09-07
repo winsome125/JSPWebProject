@@ -11,7 +11,7 @@ String telephon = request.getParameter("telephon");
 String mobile = request.getParameter("mobile1")
 				+"-"+request.getParameter("mobile2")
 				+"-"+request.getParameter("mobile3");
-String email = request.getParameter("email1")+"@"+request.getParameter("email2");
+String email = request.getParameter("email_1")+"@"+request.getParameter("email_2");
 String open_email = request.getParameter("open_email");
 String zipcode = request.getParameter("zipcode");
 String addr1 = request.getParameter("addr1");

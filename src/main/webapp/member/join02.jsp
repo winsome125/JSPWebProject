@@ -3,6 +3,8 @@
 
 <%@ include file="../include/global_head.jsp" %>
 
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
 <script>
 
   function formValidate(frm) {
@@ -13,33 +15,11 @@
 	        frm.id.focus();
 	        return false;
 	    }
-	    
-	    // 아이디는 8~12자로 입력되었는지 검증
-	    if(!(frm.id.value.length>=8 && frm.id.value.length<=12)){
-	        //8~12자 사이가 아니라면..
-	        alert("아이디는 8~12자 사이만 가능합니다.");
-	        // 입력된 값을 지우고 포커스를 이동한다. 
-	        frm.id.value = '';
-	        frm.id.focus();
-	        return false;
-	    }
-	    
-	    // 아이디는 숫자로 시작할 수 없음 
-	    // 입력한 아이디와 첫번째 문자, 아스키코드를 콘솔에서 확인한다. 
-	    console.log(frm.id.value, frm.id.value[0], 
-	            frm.id.value.charCodeAt(0));
-	    if(frm.id.value[0].charCodeAt(0)>=48 &&
-	            frm.id.value.charCodeAt(0)<=57){
-	        alert('아이디는 숫자로 시작할 수 없습니다.');
-	        frm.id.value = '';
-	        frm.id.focus();
-	        return false;
-	    }
-	  
-	    //패스워드 입력 확인
-	    if(frm.pass1.value==''){
+
+	    // 패스워드 입력 확인
+	    if(frm.pass.value==''){
 	        alert("패스워드를 입력해주세요.");
-	        frm.pass1.focus();
+	        frm.pass.focus();
 	        return false;
 	    }
 	    
@@ -48,18 +28,55 @@
 	        frm.pass2.focus();
 	        return false;
 	    }
-	    
-	    
-	    //폼 검증이 끝난후 서버로 전송 직후 로딩 이미지를 띄워준다. 
-	    document.getElementById("id_loading").style.display = 'block';
-	    // return false;
-	    
-	    
-	   
+	  	// 만약 입력한 패스워드가 일치하지 않는다면..
+	    if(frm.pass.value!=frm.pass2.value){
+	        alert('패스워드가 일치하지 않습니다. 다시 입력해주세요.');
+	        // 사용자가 입력한 패스워드를 지운다. 
+	        frm.pass.value = '';
+	        frm.pass2.value = '';
+	        // 입력상자로 포커싱 한다. 
+	        frm.pass1.focus();
+	        return false;
+	    }
+	  
+	    // 이름 입력 확인
+	    if(frm.name.value==''){
+	        alert("이름를 입력해주세요.");
+	        frm.name.focus();
+	        return false;
+	    }
+
+	  
  }
   
-//아이디 중복확인 
-  function idCheck(fn){
+  function inputEmail(frm) {
+	//이메일의 도메인을 선택한 경우의 value값 가져오기 
+	    var choiceDomain = frm.last_email_check2.value;
+	    if(choiceDomain==''){//--선택-- 부분을 선택한 경우..
+	        //입력한 모든 값을 지운다. 
+	        frm.email_1.value = '';
+	        frm.email_2.value = '';
+	        //아이디 입력란으로 포커싱한다.
+	        frm.email_1.focus();
+	    }
+	    else if(choiceDomain=='직접입력'){//직접입력을 선택한 경우..
+	        //기존에 입력된 값을 지운다.
+	        frm.email_2.value = '';
+	        //readonly 속성을 해제한다.
+	        frm.email_2.readOnly = false;
+	        //포커스를 이동한다. 
+	        frm.email_2.focus();
+	    }
+	    else{//포털 도메인을 선택한 경우..
+	        //선택한 도메인을 입력한다. 
+	        frm.email_2.value = choiceDomain;
+	        //입력된 값을 수정할 수 없도록 readonly속성을 추가한다. 
+	        frm.email_2.readOnly = true;
+	    }
+}
+  
+  //아이디 중복확인 
+  function id_check_person(fn){
       if(fn.id.value==''){
           alert("아이디를 입력후 중복확인 해주세요.");
           fn.id.focus();
@@ -95,6 +112,7 @@
 					<p class="location"><img src="../images/center/house.gif" />&nbsp;&nbsp;멤버쉽&nbsp;>&nbsp;회원가입<p>
 				</div>
 
+			<form name="myform" action="registActionT.jsp" method="post" onsubmit="return formValidate(this);">
 				<p class="join_title"><img src="../images/join_tit03.gif" alt="회원정보입력" /></p>
 				<table cellpadding="0" cellspacing="0" border="0" class="join_box">
 					<colgroup>
@@ -153,11 +171,25 @@
 	<select name="last_email_check2" onChange="email_input(this);" class="pass" id="last_email_check2" >
 		<option selected="" value="">선택해주세요</option>
 		<option value="1" >직접입력</option>
-        <option value="naver.com">naver.com</option>
-        <option value="nate.com">nate.com</option>
-        <option value="gmail.com">gmail.com</option>
-        <option value="daum.net">daum.net</option>
-        <option value="hanmail.net">hanmail.net</option>
+		<option value="dreamwiz.com" >dreamwiz.com</option>
+		<option value="empal.com" >empal.com</option>
+		<option value="empas.com" >empas.com</option>
+		<option value="freechal.com" >freechal.com</option>
+		<option value="hanafos.com" >hanafos.com</option>
+		<option value="hanmail.net" >hanmail.net</option>
+		<option value="hotmail.com" >hotmail.com</option>
+		<option value="intizen.com" >intizen.com</option>
+		<option value="korea.com" >korea.com</option>
+		<option value="kornet.net" >kornet.net</option>
+		<option value="msn.co.kr" >msn.co.kr</option>
+		<option value="nate.com" >nate.com</option>
+		<option value="naver.com" >naver.com</option>
+		<option value="netian.com" >netian.com</option>
+		<option value="orgio.co.kr" >orgio.co.kr</option>
+		<option value="paran.com" >paran.com</option>
+		<option value="sayclub.com" >sayclub.com</option>
+		<option value="yahoo.co.kr" >yahoo.co.kr</option>
+		<option value="yahoo.com" >yahoo.com</option>
 	</select>
 	 
 						<input type="checkbox" name="open_email" value="1">
@@ -179,18 +211,20 @@
 				</table>
 
 				<p style="text-align:center; margin-bottom:20px">
-				
-					<input type="image" src="../images/btn01.gif" align="absmiddle"  onclick="location.href='rehistActionT.jsp'; alt="확인"/>
-						&nbsp;&nbsp;
-					<input type="image" src="../images/btn02.gif" alt="취소"/>
+					<!-- <a href="registActionT.jsp">
+					<img src="../images/btn01.gif" /></a>&nbsp;&nbsp;
+					<a href="#">
+					<img src="../images/btn02.gif" />
+					</a>  -->
+					
+					<input type="image" src="../images/btn01.gif"/>
+					&nbsp;&nbsp;
+					<a href="#">
+					<img src="../images/btn02.gif" />
+					</a>
 
-				<!-- <a href="join02.jsp">
-				<img src="../images/btn01.gif" /></a>&nbsp;&nbsp;
-				<a href="#">
-				<img src="../images/btn02.gif" />
-				</a> -->
 				</p>
-				
+			</form>
 			</div>
 		</div>
 		<%@ include file="../include/quick.jsp" %>
