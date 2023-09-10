@@ -5,9 +5,11 @@
 <%
 // 폼값받기
 String id = request.getParameter("id");
-String pass = request.getParameter("pass1");
+String pass = request.getParameter("pass");
 String name = request.getParameter("name");
-String telephon = request.getParameter("telephon");
+String telephon = request.getParameter("tel1")
+				+"-"+request.getParameter("tel2")
+				+"-"+request.getParameter("tel3");
 String mobile = request.getParameter("mobile1")
 				+"-"+request.getParameter("mobile2")
 				+"-"+request.getParameter("mobile3");
@@ -36,10 +38,11 @@ dto.setAddr2(addr2);
 RegistDAO dao = new RegistDAO(application);
 int result = dao.registInsert(dto);
 if (result == 1) {
-	out.println("입력성공");
+	response.sendRedirect("../main/main.jsp");
 }
 else {
-	out.println("입력실패");
+	request.setAttribute("JoinErrMsg", "회원가입 실패했습니다.");
+	//그리고 로그인 페이지로 '포워드' 한다. 
+    request.getRequestDispatcher("join02.jsp").forward(request, response);
 }
-
 %>

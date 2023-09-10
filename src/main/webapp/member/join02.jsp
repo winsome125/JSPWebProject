@@ -263,9 +263,10 @@ function postOpen(){
             </table>
 
             <p style="text-align:center; margin-bottom:20px">
-               <input type ="image" src="../images/btn01.gif" />&nbsp;&nbsp;
+               <input type ="image" src="../images/btn01.gif" name="registpost"/>&nbsp;&nbsp;
                <a href="#"><img src="../images/btn02.gif" alt="취소" /></a>
             </p>
+			 
          </form>
             
          </div>
