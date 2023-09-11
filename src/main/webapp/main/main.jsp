@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -10,6 +11,32 @@
 @import url("../css/main.css");
 @import url("../css/sub.css");
 </style>
+
+    <script>
+    /* 로그인 폼의 입력값을 검증하기 위한 함수로 빈값인지를 확인한다. */
+    function validateForm(form) {
+    	//입력값이 공백인지 확인후 경고창, 포커스이동, 폼값전송 
+    	//중단처리를 한다.
+        if (!form.user_id.value) {
+            alert("아이디를 입력하세요.");
+            form.user_id.focus();
+            return false;
+        }
+        if (form.user_pw.value == "") {
+            alert("패스워드를 입력하세요.");
+            form.user_pw.focus();
+            return false;
+        }
+        if(frm.user_pw.value=='') {
+            alert('비밀번호가 일치하지 않습니다. 다시 입력해주세요.');
+            //사용자가 입력 입력한 비밀번호를 지운다.
+            frm.user_pw.value = '';
+            //입력상자로 포커싱한다.
+            frm.pass.focus();
+            return false;
+         }
+    }
+    </script>
 </head>
 <body>
 <center>
@@ -31,6 +58,8 @@
             */
             if (session.getAttribute("UserId") == null) { 
             %>
+            <form action="../member/LoginProcess.jsp" method="post" name="loginFrm" 
+					onsubmit="return validateForm(this);">
                <table cellpadding="0" cellspacing="0" border="0">
                   <colgroup>
                      <col width="45px" />
@@ -39,12 +68,12 @@
                   </colgroup>
                   <tr>
                      <th><img src="../images/login_tit01.gif" alt="아이디" /></th>
-                     <td><input type="text" name="" value="" class="login_input" /></td>
-                     <td rowspan="2"><input type="image" src="../images/login_btn01.gif" alt="로그인" /></td>
+                     <td><input type="text" name="user_id" tabindex="1" value="" class="login_input" /></td>
+                     <td rowspan="2"><input type="image" tabindex="3" src="../images/login_btn01.gif" alt="로그인" /></td>
                   </tr>
                   <tr>
                      <th><img src="../images/login_tit02.gif" alt="패스워드" /></th>
-                     <td><input type="password" name="" value="" class="login_input" /></td>
+                     <td><input type="password" name="user_pw" tabindex="2" value="" class="login_input" /></td>
                   </tr>
                </table>
                <p>
@@ -52,15 +81,16 @@
                   <a href="../member/id_pw.jsp"><img src="../images/login_btn02.gif" alt="아이디/패스워드찾기" /></a>
                   <a href="../member/join01.jsp"><img src="../images/login_btn03.gif" alt="회원가입" /></a>
                </p>
+            </form>
             <%
             } else {  
                // 로그인이 된 상태에서는 회원의 이름과 로그아웃 버튼을 출력한다.
             %>
                <!-- 로그인 후 -->
-               <p style="padding:10px 0px 10px 10px"><span style="font-weight:bold; color:#333;">000님,</span> 반갑습니다.<br />로그인 하셨습니다.</p>
+               <p style="padding:10px 0px 10px 10px"><span style="font-weight:bold; color:#333;"><%=session.getAttribute("UserName") %>님,</span> 반갑습니다.<br />로그인 하셨습니다.</p>
                <p style="text-align:right; padding-right:10px;">
                   <a href=""><img src="../images/login_btn04.gif" /></a>
-                  <a href=""><img src="../images/login_btn05.gif" /></a>
+                  <a href="../member/Logout.jsp"><img src="../images/login_btn05.gif" /></a>
                </p>
             <%
             }
@@ -69,23 +99,31 @@
          </div>
          <div class="main_con_center">
             <p class="main_title"><img src="../images/main_title02.gif" alt="공지사항 NOTICE" /><a href="/space/sub01.jsp"><img src="../images/more.gif" alt="more" class="more_btn" /></a></p>
-            <ul class="main_board_list">
-               <li><p><a href="">마포 구립 장애인 직업재활센터 홈페이지</a><span>2012.01.26</span></p></li>
-               <li><a href="">마포 구립 장애인 직업재활센터 홈페이지</a><span>2012.01.26</span></li>
-               <li><a href="">마포 구립 장애인 직업재활센터 홈페이지</a><span>2012.01.26</span></li>
-               <li><a href="">마포 구립 장애인 직업재활센터 홈페이지</a><span>2012.01.26</span></li>
-            </ul>
-         </div>
-         <div class="main_con_right">
-            <p class="main_title"><img src="../images/main_title03.gif" alt="자유게시판 FREE BOARD" /><a href="/space/sub03.jsp"><img src="../images/more.gif" alt="more" class="more_btn" /></a></p>
-            <ul class="main_board_list">
-               <li><p><a href="">마포 구립 장애인 직업재활센터 홈페이지</a><span>2012.01.26</span></p></li>
-               <li><a href="">마포 구립 장애인 직업재활센터 홈페이지</a><span>2012.01.26</span></li>
-               <li><a href="">마포 구립 장애인 직업재활센터 홈페이지</a><span>2012.01.26</span></li>
-               <li><a href="">마포 구립 장애인 직업재활센터 홈페이지</a><span>2012.01.26</span></li>
-            </ul>
-         </div>
-      </div>
+				<!-- 공지사항 게시물 4개 -->
+				<ul class="main_board_list">
+				<c:forEach items="${ notice }" var="row">
+					<li><p>
+						<a href="../space/sub01View.jsp?num=${row.num }">${row.title }</a>
+						<span>${row.postdate }</span></p>
+					</li>
+				</c:forEach>
+			
+				</ul>
+			</div>
+			
+			<!-- 자유게시판 게시물 4개 -->
+			<div class="main_con_right">
+				<p class="main_title"><img src="../images/main_title03.gif" alt="자유게시판 FREE BOARD" /><a href="/space/sub03.jsp"><img src="../images/more.gif" alt="more" class="more_btn" /></a></p>
+				<ul class="main_board_list">
+				<c:forEach items="${free }" var="dto">
+					<li><p>
+						<a href="">${dto.title }</a>
+						<span>${dto.postdate }</span></p>
+					</li>
+				</c:forEach>
+				</ul>
+			</div>
+		</div>
 
       <div class="main_contents">
          <div class="main_con_left">

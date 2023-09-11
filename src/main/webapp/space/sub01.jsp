@@ -20,9 +20,13 @@
 					<p class="location"><img src="../images/center/house.gif" />&nbsp;&nbsp;열린공간&nbsp;>&nbsp;공지사항<p>
 				</div>
 				<div>
-
-
-
+				
+<!-- 게시판 들어가는 부분s -->
+				
+				
+				
+				
+<!-- 게시판 들어가는 부분e-->
 				</div>
 			</div>
 		</div>

@@ -2,6 +2,31 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../include/global_head.jsp" %>
 
+ <script>
+   /* 로그인 폼의 입력값을 검증하기 위한 함수로 빈값인지를 확인한다. */
+   function validateForm(form) {
+    //입력값이 공백인지 확인후 경고창, 포커스이동, 폼값전송 
+    //중단처리를 한다.
+       if (!form.user_id.value) {
+            alert("아이디를 입력하세요.");
+            form.user_id.focus();
+            return false;
+        }
+        if (form.user_pw.value == "") {
+            alert("패스워드를 입력하세요.");
+            form.user_pw.focus();
+            return false;
+        }
+        if(frm.user_pw.value=='') {
+            alert('비밀번호가 일치하지 않습니다. 다시 입력해주세요.');
+            //사용자가 입력 입력한 비밀번호를 지운다.
+            frm.user_pw.value = '';
+            //입력상자로 포커싱한다.
+            frm.pass.focus();
+            return false;
+         }
+    }
+ </script>
 
  <body>
 	<center>
@@ -19,14 +44,19 @@
 					<img src="../images/login_title.gif" alt="인사말" class="con_title" />
 					<p class="location"><img src="../images/center/house.gif" />&nbsp;&nbsp;멤버쉽&nbsp;>&nbsp;로그인<p>
 				</div>
+				
 				<div class="login_box01">
-					<img src="../images/login_tit.gif" style="margin-bottom:30px;" />
-					<ul>
-						<li><img src="../images/login_tit001.gif" alt="아이디" style="margin-right:15px;" /><input type="text" name="" value="" class="login_input01" /></li>
-						<li><img src="../images/login_tit002.gif" alt="비밀번호" style="margin-right:15px;" /><input type="password" name="" value="" class="login_input01" /></li>
-					</ul>
-					<a href=""><img src="../images/login_btn.gif" class="login_btn01" /></a>
+					<form action="LoginProcess.jsp" method="post" name="loginFrm"
+	        			onsubmit="return validateForm(this);">
+						<img src="../images/login_tit.gif" style="margin-bottom:30px;" />
+						<ul>
+							<li><img src="../images/login_tit001.gif" alt="아이디" style="margin-right:15px;" /><input type="text" name="user_id" value="" class="login_input01" /></li>
+							<li><img src="../images/login_tit002.gif" alt="비밀번호" style="margin-right:15px;" /><input type="password" name="user_pw" value="" class="login_input01" /></li>
+						</ul>
+						<input type="image" src="../images/login_btn.gif" class="login_btn01" /></a>
+					</form>
 				</div>
+				
 				<p style="text-align:center; margin-bottom:50px;"><a href=""><img src="../images/login_btn02.gif" alt="아이디/패스워드찾기" /></a>&nbsp;<a href=""><img src="../images/login_btn03.gif" alt="회원가입" /></a></p>
 			</div>
 		</div>
