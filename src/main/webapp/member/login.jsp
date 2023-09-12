@@ -17,14 +17,9 @@
             form.user_pw.focus();
             return false;
         }
-        if(frm.user_pw.value=='') {
-            alert('비밀번호가 일치하지 않습니다. 다시 입력해주세요.');
-            //사용자가 입력 입력한 비밀번호를 지운다.
-            frm.user_pw.value = '';
-            //입력상자로 포커싱한다.
-            frm.pass.focus();
-            return false;
-         }
+        else if (form.user_pw.value == "") {
+        	alert("아이디 또는 비밀번호가 일치하지 않습니다.");
+        }
     }
  </script>
 

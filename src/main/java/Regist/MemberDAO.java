@@ -2,6 +2,7 @@ package Regist;
 
 import common.JDBConnect;
 import jakarta.servlet.ServletContext;
+/*import model1.board.BoardDTO;*/
 
 /*
 DAO(Data Access Object) : 실제 데이터베이스에 접근하여 기본적인
@@ -55,32 +56,51 @@ public class MemberDAO extends JDBConnect {
         return dto; 
     }
     
-//  //새로운 게시물 입력을 위한 메서드 
-//  public int insertWrite(BoardDTO dto) {
-//      int result = 0;
-//      
-//      try {
-//      	//인파라미터가 있는 동적쿼리문으로 insert문 작성
-//      	//게시물의 일련번호는 시퀀스를 통해 자동부여받고, 
-//      	//조회수의 경우에는 0을 입력한다. 
-//          String query = "INSERT INTO sua_member ( "
-//                       + " num,title,content,id,visitcount) "
-//                       + " VALUES ( "
-//                       + " seq_board_num.NEXTVAL, ?, ?, ?, 0)";  
-//          //동적쿼리문 이므로 prepared객체를 통해 인파라미터를
-//          //채워준다. 
-//          psmt = con.prepareStatement(query); 
-//          psmt.setString(1, dto.getTitle());  
-//          psmt.setString(2, dto.getContent());
-//          psmt.setString(3, dto.getId());  
-//          //insert를 실행하여 입력된 행의 갯수를 반환받는다.
-//          result = psmt.executeUpdate(); 
-//      }
-//      catch (Exception e) {
-//          System.out.println("게시물 입력 중 예외 발생");
-//          e.printStackTrace();
-//      }
-//      
-//      return result;
-//  }
+    
+//    //새로운 게시물 입력을 위한 메서드 
+//    public int insertWrite(BoardDTO dto) {
+//        int result = 0;
+//        
+//        try {
+//        	//인파라미터가 있는 동적쿼리문으로 insert문 작성
+//        	//게시물의 일련번호는 시퀀스를 통해 자동부여받고, 
+//        	//조회수의 경우에는 0을 입력한다. 
+//            String query = "INSERT INTO board ( "
+//                         + " num,title,content,id,visitcount) "
+//                         + " VALUES ( "
+//                         + " seq_board_num.NEXTVAL, ?, ?, ?, 0)";  
+//            //동적쿼리문 이므로 prepared객체를 통해 인파라미터를
+//            //채워준다. 
+//            psmt = con.prepareStatement(query); 
+//            psmt.setString(1, dto.getTitle());  
+//            psmt.setString(2, dto.getContent());
+//            psmt.setString(3, dto.getId());  
+//            //insert를 실행하여 입력된 행의 갯수를 반환받는다.
+//            result = psmt.executeUpdate(); 
+//        }
+//        catch (Exception e) {
+//            System.out.println("게시물 입력 중 예외 발생");
+//            e.printStackTrace();
+//        }
+//        
+//        return result;
+//    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }

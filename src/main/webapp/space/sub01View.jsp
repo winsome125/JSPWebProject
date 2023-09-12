@@ -4,6 +4,9 @@
     pageEncoding="UTF-8"%>
     
 <%
+// 게시판 테이블 파라미터 받아오기
+String tname = request.getParameter("tname");
+
 /* 목록에서 제목을 클릭하면 게시물의 일련번호를 ?num=99와 
 같이 받아온다. 게시물 인출을 위해 파라미터를 받아온다. */
 String num = request.getParameter("num");
@@ -89,8 +92,6 @@ if(session.getAttribute("UserId")!=null &&
 <%
 }
 %>
-                <button type="button" onclick="location.href='Edit.jsp?num=<%= dto.getNum() %>';">
-                     수정하기</button>
                 <button type="button" class="btn btn-outline-secondary" style="font-size: 12px" onclick="location.href='sub01List.jsp';">
                     목록 보기
                 </button>

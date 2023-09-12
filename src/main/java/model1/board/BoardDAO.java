@@ -25,7 +25,7 @@ public class BoardDAO extends JDBConnect {
     	int totalCount = 0; 
 
     	//게시물 수를 얻어오기 위한 퀴리문 작성 
-        // String query = "SELECT COUNT(*) FROM suaboard";
+        // String query = "SELECT COUNT(*) FROM board";
     	String query = "SELECT COUNT(*) FROM "+ map.get("tname");
     	
     	
@@ -65,7 +65,7 @@ public class BoardDAO extends JDBConnect {
 
     	/* 레코드 인출을 위한 select 쿼리문 작성. 최근 게시물이 상단에
     	출력되야 하므로 일련번호의 내림차순으로 정렬한다. */
-        String query = "SELECT * FROM suaboard "; 
+        String query = "SELECT * FROM board "; 
         if (map.get("searchWord") != null) {
             query += " WHERE " + map.get("searchField") + " "
                    + " LIKE '%" + map.get("searchWord") + "%' ";
@@ -109,7 +109,7 @@ public class BoardDAO extends JDBConnect {
         	/* 인파라미터가 있는 동적쿼리문으로 insert문을 작성한다. 
         	게시물의 일련번호는 시퀀스를 통해 자동부여하고, 조회수는 
         	0으로 입력한다. */
-            String query = "INSERT INTO suaboard ( "
+            String query = "INSERT INTO board ( "
                          + " num,title,content,id,visitcount) "
                          + " VALUES ( "
                          + " seq_board_num.NEXTVAL, ?, ?, ?, 0)";  
@@ -137,7 +137,7 @@ public class BoardDAO extends JDBConnect {
     	/* 내부조인(inner join)을 통해 member테이블의 name컬럼까지
     	select 한다. */
         String query = "SELECT B.*, M.name " 
-                     + " FROM member M INNER JOIN suaboard B " 
+                     + " FROM member M INNER JOIN board B " 
                      + " ON M.id=B.id "
                      + " WHERE num=?";
         try {
@@ -178,7 +178,7 @@ public class BoardDAO extends JDBConnect {
     public void updateVisitCount(String num) {
     	/* 게시물의 일련번호를 통해 visitcount를 1 증가시킨다. 
     	해당 컬럼은 number 타입이므로 사칙연산이 가능하다. */
-        String query = "UPDATE suaboard SET "
+        String query = "UPDATE board SET "
                      + " visitcount=visitcount+1 "
                      + " WHERE num=?";
         
@@ -198,7 +198,7 @@ public class BoardDAO extends JDBConnect {
         int result = 0;        
         try {
         	//특정 일련번호에 해당하는 게시물을 수정한다. 
-            String query = "UPDATE suaboard SET "
+            String query = "UPDATE board SET "
                          + " title=?, content=? "
                          + " WHERE num=?";
             //쿼리문의 인파라미터 설정 
@@ -223,7 +223,7 @@ public class BoardDAO extends JDBConnect {
 
         try {
         	//인파라미터가 있는 delete쿼리문 작성
-            String query = "DELETE FROM suaboard WHERE num=?";
+            String query = "DELETE FROM board WHERE num=?";
             psmt = con.prepareStatement(query); 
             psmt.setString(1, dto.getNum()); 
             result = psmt.executeUpdate(); 

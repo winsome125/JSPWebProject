@@ -2,24 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../include/global_head.jsp" %>
 
- <script>
-   /* 로그인 폼의 입력값을 검증하기 위한 함수로 빈값인지를 확인한다. */
-   function validateForm(form) {
-    //입력값이 공백인지 확인후 경고창, 포커스이동, 폼값전송 
-    //중단처리를 한다.
-       if (!form.user_id.value) {
-            alert("회원이름을 입력하세요.");
-            form.user_id.focus();
-            return false;
-        }
-        if (form.user_m.value == "") {
-            alert("이메일을 입력하세요.");
-            form.user_pw.focus();
-            return false;
-        }
-    }
- </script>
-
  <body>
 	<center>
 	<div id="wrap">

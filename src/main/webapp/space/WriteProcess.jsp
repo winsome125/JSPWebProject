@@ -7,6 +7,9 @@
 글쓰기 처리 페이지에서도 반드시 로그인을 확인해야한다.  -->    
  
 <%
+//게시판 테이블 파라미터 받아오기
+String tname = request.getParameter("tname");
+
 //클라이언트가 작성한 폼값을 받아온다. 
 String title = request.getParameter("title");
 String content = request.getParameter("content");
@@ -25,7 +28,8 @@ BoardDAO dao = new BoardDAO(application);
 int iResult = dao.insertWrite(dto);
 
 //페이징 테스트를 위해 100개의 게시물을 한번에 입력..
-/* int iResult = 0;
+/*
+int iResult = 0;
 for(int i=1 ; i<=100 ; i++){
 
 	// 만약 제목을 "안녕하세요"로 입력했다면...
@@ -39,7 +43,7 @@ dao.close();
 
 if (iResult == 1) {
 	//글쓰기에 성공했다면 목록으로 이동한다. 
-    response.sendRedirect("sub01List.jsp");
+    response.sendRedirect("sub01List.jsp?tname="+tname);
 } 
 else {
 	//실패했다면 경고창(alert)을 띄우고, 뒤로(history) 이동한다. 

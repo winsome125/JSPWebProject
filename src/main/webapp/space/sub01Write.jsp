@@ -5,6 +5,10 @@
 로그인 페이지로 이동시킨다.  -->    
 <%@ include file="./IsLoggedIn.jsp"%>
 
+<%
+// 게시판 테이블 파라미터 받아오기
+String tname = request.getParameter("tname");
+%>
 <%@ include file="../include/global_head.jsp" %>
 
 <script type="text/javascript">
@@ -45,6 +49,9 @@ function validateForm(form) {
 
 	<form name="writeFrm" method="post" action="WriteProcess.jsp"
       onsubmit="return validateForm(this);">
+    
+    <input type="hidden" name="tname" value="<%=tname %>" />  
+      
     <table class="table table-bordered" width="90%">
         <tr>
             <td>제목</td>
@@ -60,9 +67,9 @@ function validateForm(form) {
         </tr>
         <tr>
             <td colspan="2" align="center">
-                <button type="submit">작성 완료</button>
-                <button type="reset">다시 입력</button>
-                <button type="button" onclick="location.href='sub01List.jsp';">
+                <button type="submit"  class="btn btn-outline-secondary" style="font-size: 12px">작성 완료</button>
+                <button type="reset"  class="btn btn-outline-secondary" style="font-size: 12px">다시 입력</button>
+                <button type="button" onclick="location.href='sub01List.jsp';"  class="btn btn-outline-secondary" style="font-size: 12px">
                     목록 보기</button>
             </td>
         </tr>
