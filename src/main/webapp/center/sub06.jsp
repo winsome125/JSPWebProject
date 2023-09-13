@@ -22,7 +22,9 @@
 				</div>
 				<div class="con_box">
 					<p class="con_tit"><img src="../images/center/sub07_tit01.gif" alt="오시는길" /></p>
-					<img src="../images/center/sub07_img01.gif" class="con_img"/>
+					<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3162.1910018429803!2d126.88731967633005!3d37.57411982369258!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357c9914ca24c25f%3A0xcedc23780fc7772d!2z66eI7Y-s6rWs66a97J6l7JWg7J247KeB7JeF7J6s7Zmc7IS87YSw!5e0!3m2!1sko!2skr!4v1694567213891!5m2!1sko!2skr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+					<!-- <img src="../images/center/sub07_img01.gif" class="con_img"/> -->
+					&nbsp;
 					<p class="con_tit"><img src="../images/center/sub07_tit02.gif" alt="자가용 오시는길" /></p>
 					<div class="in_box">
 						<p class="dot_tit">강북 방향</p>

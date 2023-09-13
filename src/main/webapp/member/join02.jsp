@@ -4,12 +4,6 @@
 <script>
 function formValidate(frm) {
    
-   //이름에 입력한 값이 있는지 확인한다.
-   if(frm.name.value == '') {
-      alert("이름을 입력해주세요.");
-      frm.name.focus();
-      return false;
-   }
    
    //아이디에 입력한 값이 있는지 확인한다.
    if(frm.id.value == '') {
@@ -71,6 +65,14 @@ function formValidate(frm) {
       frm.pass.focus();
       return false;
    }
+   
+ //이름에 입력한 값이 있는지 확인한다.
+   if(frm.name.value == '') {
+      alert("이름을 입력해주세요.");
+      frm.name.focus();
+      return false;
+   }
+   
 }
 
 function email_input(frm) {
